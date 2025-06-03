@@ -1,5 +1,5 @@
-import { createShortUrlService } from "../services/short_url.service";
-import { generateNanoId } from "../utils/helper";
+import { createShortUrlService } from "../services/short_url.service.js";
+import { generateNanoId } from "../utils/helper.js";
 
 export const createShortUrl = async (req, res) => {
   const { url } = req.body;
@@ -8,5 +8,5 @@ export const createShortUrl = async (req, res) => {
     if (!short_url) {
         return res.status(500).json({ error: "Failed to create short URL" });
     }
-    res.status(201).json({ short_url });
+    res.status(201).send(process.env.APP_URL + short_url);
 };
