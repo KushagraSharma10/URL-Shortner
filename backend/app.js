@@ -6,6 +6,7 @@ dotenv.config("./.env");
 
 import connectDB from "./src/config/mongo.config.js";
 import urlSchema from "./src/models/shorturl.model.js";
+import short_url from "./src/routes/short_url.route.js";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,16 +26,7 @@ app.get("/:id", async(req,res)=>{
     }
 })
 
-app.post("/api/create", (req, res) => {
-  const { url } = req.body;
-  const shortUrl = nanoid(7);
-  const newUrl = new urlSchema({
-    full_url: url,
-    short_url: shortUrl,
-  });
-  newUrl.save();
-  res.send(url);
-});
+app.post("/api/create", short_url);
 
 app.listen(3000, () => {
   connectDB();
