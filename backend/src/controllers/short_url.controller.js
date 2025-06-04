@@ -6,7 +6,6 @@ export const createShortUrl = async (req, res) => {
   const { url } = req.body;
 
   const short_url = await createShortUrlWithoutUser(url);
-  console.log(short_url);
     if (!short_url) {
         return res.status(500).json({ error: "Failed to create short URL" });
     }
