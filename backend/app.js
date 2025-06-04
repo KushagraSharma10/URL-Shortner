@@ -6,9 +6,11 @@ dotenv.config("./.env");
 import connectDB from "./src/config/mongo.config.js";
 import short_url from "./src/routes/short_url.route.js";
 import { redirectFromShortUrl } from "./src/controllers/short_url.controller.js";
+import { errorHandler } from "./src/utils/errorHandler.js";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(errorHandler);
 
 
 app.get("/:id", redirectFromShortUrl);
