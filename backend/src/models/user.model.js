@@ -17,9 +17,7 @@ const UserSchema = new mongoose.Schema({
   Avatar: {
     type: String,
     required: false,
-    default: function(){
-        return getGravatarUrl(this.email);
-    },
+    default: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp"
   },
 });
 
