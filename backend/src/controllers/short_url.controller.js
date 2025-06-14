@@ -10,7 +10,7 @@ export const createShortUrl = wrapAsync(async (req, res) => {
   if (!short_url) {
     return res.status(500).json({ error: "Failed to create short URL" });
   }
-  res.status(201).send(process.env.APP_URL + short_url);
+  res.status(201).json({ shortUrl: process.env.APP_URL + short_url });
 });
 
 export const redirectFromShortUrl = wrapAsync(async (req, res) => {
